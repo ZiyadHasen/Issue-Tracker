@@ -11,7 +11,7 @@ import { createIssueSchema } from '@/app/validationSchema';
 import { z } from 'zod';
 import ErrorMessage from '@/app/components/ErrorMessage';
 import Spinner from '@/app/components/Spinner';
-
+import delay from 'delay';
 type IssueForm = z.infer<typeof createIssueSchema>;
 
 const NewIssuePage = () => {
@@ -27,14 +27,14 @@ const NewIssuePage = () => {
 
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   return (
     <div className='max-w-xl'>
       {error && (
         <Callout.Root color='red' className='mb-5'>
           <Callout.Text>Error Occurred</Callout.Text>
         </Callout.Root>
-      )}{' '}
-      cccccc
+      )}
       <form
         className='space-y-3'
         onSubmit={handleSubmit(async (data) => {

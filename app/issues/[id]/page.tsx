@@ -4,6 +4,7 @@ import { Card, Heading } from '@radix-ui/themes';
 import { notFound } from 'next/navigation';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import delay from 'delay';
 
 interface Prop {
   params: { id: string };
@@ -14,6 +15,7 @@ const IssueDetailPage = async ({ params }: Prop) => {
     where: { id: parseInt(params.id) },
   });
   if (!issue) notFound();
+  await delay(5000);
 
   return (
     <>
