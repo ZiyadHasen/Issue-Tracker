@@ -7,6 +7,8 @@ import ReactMarkdown from 'react-markdown';
 import delay from 'delay';
 import Link from 'next/link';
 import { Pencil2Icon } from '@radix-ui/react-icons';
+import EditIssueButton from './EditIssueButton';
+import IssueDetail from './IssueDetail';
 
 interface Prop {
   params: { id: string };
@@ -17,26 +19,16 @@ const IssueDetailPage = async ({ params }: Prop) => {
     where: { id: parseInt(params.id) },
   });
   if (!issue) notFound();
-  await delay(5000);
+  // await delay(5000);
 
   return (
     <>
       <Grid gap='5' columns={{ initial: '1', md: '2' }}>
         <Box>
-          <Heading>{issue.title}</Heading>
-          <div className='flex space-x-3 my-2'>
-            <IssueStatusBadge status={issue.status} />
-            <p className=''>{issue.createdAt.toDateString()}</p>
-          </div>
-          <Card className='prose mt-4 '>
-            <ReactMarkdown>{issue.description}</ReactMarkdown>
-          </Card>
+          <IssueDetail issue={issue} />
         </Box>
         <Box>
-          <Button>
-            <Pencil2Icon />
-            <Link href={`/issue/${issue.id}/edit`}>Edit Button</Link>
-          </Button>
+          <EditIssueButton issueId={issue.id} />
         </Box>
       </Grid>
     </>
