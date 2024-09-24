@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { IssueSchema } from '@/app/validationSchema';
 import prisma from '@/prisma/client';
-
+//*Imports
+// NextRequest and NextResponse are imported from next/server to handle server-side requests and responses in a Next.js API route.
+// IssueSchema is imported from a custom validation schema located at @/app/validationSchema.
+// prisma is imported from @/prisma/client to interact with the database using Prisma ORM.
 export async function PATCH(
   request: NextRequest,
 
@@ -13,7 +16,7 @@ export async function PATCH(
 ) {
   const body = await request.json();
   const validations = IssueSchema.safeParse(body);
-  console.log(validations);
+
   if (!validations.success)
     return NextResponse.json(validations.error.errors, { status: 400 });
 
