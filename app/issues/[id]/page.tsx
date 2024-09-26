@@ -3,6 +3,7 @@ import { Box, Grid } from '@radix-ui/themes';
 import { notFound } from 'next/navigation';
 import EditIssueButton from './EditIssueButton';
 import IssueDetail from './IssueDetail';
+import DeleteIssueButton from './DeleteIssueButton';
 
 interface Prop {
   params: { id: string };
@@ -13,16 +14,18 @@ const IssueDetailPage = async ({ params }: Prop) => {
     where: { id: parseInt(params.id) },
   });
   if (!issue) notFound();
-  // await delay(5000);
 
   return (
     <>
-      <Grid gap='5' columns={{ initial: '1', md: '2' }}>
-        <Box>
+      <Grid gap='5' columns={{ initial: '1', sm: '5' }}>
+        <Box className='md:col-span-4'>
           <IssueDetail issue={issue} />
         </Box>
         <Box>
-          <EditIssueButton issueId={issue.id} />
+          <div className='flex flex-col gap-3'>
+            <EditIssueButton issueId={issue.id} />
+            <DeleteIssueButton issueId={issue.id} />
+          </div>
         </Box>
       </Grid>
     </>
