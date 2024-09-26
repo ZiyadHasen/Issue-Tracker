@@ -14,7 +14,7 @@ const NavBar = () => {
 
   const links: Link[] = [
     { label: 'Dashboard', href: '/' },
-    { label: 'Issues', href: '/issues' },
+    { label: 'Issues', href: '/issues/list' },
   ];
   return (
     <div className='flex gap-x-5 border-b mb-5 px-5 h-14 items-center'>
