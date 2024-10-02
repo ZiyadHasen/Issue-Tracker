@@ -6,7 +6,7 @@ import { Inter } from 'next/font/google';
 import NavBar from './NavBar';
 import { Container, Theme, ThemePanel } from '@radix-ui/themes';
 import AuthProvider from './Auth/Provider';
-
+import QueryClientProvider from './QueryClientProvider';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
@@ -23,14 +23,16 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={inter.variable}>
-        <AuthProvider>
-          <Theme accentColor='violet'>
-            <NavBar />
-            <main className='p-5'>
-              <Container>{children}</Container>
-            </main>
-          </Theme>
-        </AuthProvider>
+        <QueryClientProvider>
+          <AuthProvider>
+            <Theme accentColor='violet'>
+              <NavBar />
+              <main className='p-5'>
+                <Container>{children}</Container>
+              </main>
+            </Theme>
+          </AuthProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );

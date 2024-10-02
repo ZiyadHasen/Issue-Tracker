@@ -13,14 +13,13 @@ const AssigneeSelect = () => {
       setUsers(data);
     };
     fetchUsers();
-  });
+  }, []);
   return (
     <Select.Root>
       <Select.Trigger placeholder='assign...' className='w-full' />
       <Select.Content>
         <Select.Group>
           <Select.Label>Suggestions</Select.Label>
-
           {users.map((user) => (
             <Select.Item key={user.id} value={user.id}>
               {user.name}
