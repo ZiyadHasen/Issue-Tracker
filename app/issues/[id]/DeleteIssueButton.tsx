@@ -5,6 +5,9 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
+// !This is very good example how you make deletion with confirmation its simple see the radix doc you can even understand by only looking here
+// !  perfect Example !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
   const router = useRouter();
   const [error, setError] = useState(false);

@@ -12,7 +12,7 @@ interface Prop {
 }
 
 const IssueDetailPage = async ({ params }: Prop) => {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions); //*since everything is wrapped by session provider we can fetch session in any component we wanted
   const issue = await prisma.issue.findUnique({
     where: { id: parseInt(params.id) },
   });

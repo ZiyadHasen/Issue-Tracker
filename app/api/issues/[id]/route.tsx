@@ -1,8 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
 import { IssueSchema } from '@/app/validationSchema';
 import prisma from '@/prisma/client';
+import { NextRequest, NextResponse } from 'next/server';
 
-import delay from 'delay';
 import authOptions from '@/app/Auth/authOptions';
 import { getServerSession } from 'next-auth';
 

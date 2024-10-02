@@ -6,10 +6,15 @@ import IssueActions from '../../components/IssueActions';
 import React from 'react';
 
 const IssuesPage = async () => {
+  //* Prisma Client Naming Convention: The Prisma client uses a lowercase version of your model
+  //* name as its property to follow JavaScript/TypeScript conventions.
+  //* This means Issue in your schema becomes issue
   const issues = await prisma.issue.findMany();
   return (
     <>
+      {/* this is the New Issue Button on top of List of issues */}
       <IssueActions />
+      {/* *************************************************************** */}
       <Table.Root variant='surface'>
         <Table.Header>
           <Table.Row>
@@ -30,7 +35,6 @@ const IssuesPage = async () => {
                 <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
 
                 <div className='block md:hidden'>
-                  {' '}
                   <IssueStatusBadge status={issue.status} />
                 </div>
               </Table.Cell>

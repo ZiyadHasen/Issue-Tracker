@@ -64,6 +64,9 @@ const AuthStatus = () => {
   if (status === 'loading') return <Skeleton className='w-12 h-6' />;
   if (status === 'unauthenticated')
     return (
+      //! here this endpoint is no defined locally so where did it came from
+      // the answer is all endpoint starting by auth are handled by our next-auth library so it will redirect it to signin page
+      // how do i know this ? i dont know i just test it all the work is done by next auth
       <Link href='/api/auth/signin' className='text-zinc-500'>
         Login
       </Link>
