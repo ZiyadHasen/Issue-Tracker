@@ -1,7 +1,7 @@
 'use client';
 import ErrorMessage from '@/app/components/ErrorMessage'; //? error message showed using this component in style
 import Spinner from '@/app/components/Spinner'; //?when submitting adding this is great
-import { IssueSchema } from '@/app/validationSchema'; //?this is front end validation using Zod/Go check it out
+import { IssueSchema } from '@/app/validationSchemas'; //?this is front end validation using Zod/Go check it out
 import { zodResolver } from '@hookform/resolvers/zod'; //?bridge between Zod and RHF before submitting client side validation there
 import { Issue } from '@prisma/client'; //?we need this model to make it type for coming issue in case of editing
 import { Button, Callout, TextField } from '@radix-ui/themes'; //?this are imports from radix ui
