@@ -1,7 +1,7 @@
 'use client';
 import ErrorMessage from '@/app/components/ErrorMessage'; //? error message showed using this component in style
 import Spinner from '@/app/components/Spinner'; //?when submitting adding this is great
-import { IssueSchema } from '@/app/validationSchemas'; //?this is front end validation using Zod/Go check it out
+import { patchIssueSchema, issueSchema } from '@/app/validationSchemas'; //?this is front end validation using Zod/Go check it out
 import { zodResolver } from '@hookform/resolvers/zod'; //?bridge between Zod and RHF before submitting client side validation there
 import { Issue } from '@prisma/client'; //?we need this model to make it type for coming issue in case of editing
 import { Button, Callout, TextField } from '@radix-ui/themes'; //?this are imports from radix ui
@@ -13,7 +13,7 @@ import { Controller, useForm } from 'react-hook-form'; //?Controller is special 
 import SimpleMDE from 'react-simplemde-editor'; //?it is the editor component
 import { z } from 'zod';
 
-type IssueFormData = z.infer<typeof IssueSchema>;
+type IssueFormData = z.infer<typeof patchIssueSchema>;
 interface Props {
   issue?: Issue;
 }
@@ -27,7 +27,7 @@ const IssueForm = ({ issue }: Props) => {
     handleSubmit,
     formState: { errors }, //*The formState object provides information about the form’s state.including error as we see here
   } = useForm<IssueFormData>({
-    resolver: zodResolver(IssueSchema),
+    resolver: zodResolver(patchIssueSchema),
   });
 
   const [error, setError] = useState('');
