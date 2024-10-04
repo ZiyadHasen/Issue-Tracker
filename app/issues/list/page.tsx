@@ -2,14 +2,30 @@ import prisma from '@/prisma/client';
 import { Table } from '@radix-ui/themes';
 import IssueStatusBadge from '../../components/IssueStatusBadge';
 import Link from '../../components/Link';
-import IssueActions from '../../components/IssueActions';
+import IssueActions from './IssueActions';
 import React from 'react';
+import { Status } from '@prisma/client';
+//* Prisma Client Naming Convention: The Prisma client uses a lowercase version of your model
+//* name as its property to follow JavaScript/TypeScript conventions.
+//* This means Issue in your schema becomes issue
 
-const IssuesPage = async () => {
-  //* Prisma Client Naming Convention: The Prisma client uses a lowercase version of your model
-  //* name as its property to follow JavaScript/TypeScript conventions.
-  //* This means Issue in your schema becomes issue
-  const issues = await prisma.issue.findMany();
+interface Props {
+  searchParams: { status: Status };
+}
+const IssuesPage = async ({ searchParams }: Props) => {
+  // *Object.values(Status) converts the enum into an array of the values.
+  const statuses = Object.values(Status);
+  const status = statuses.includes(searchParams.status)
+    ? searchParams.status
+    : undefined;
+
+  const issues = await prisma.issue.findMany({
+    where: {
+      status: status,
+    },
+  });
+  // console.log(searchParams);
+
   return (
     <>
       {/* this is the New Issue Button on top of List of issues */}
