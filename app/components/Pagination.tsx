@@ -27,7 +27,7 @@ const Pagination = ({ itemsCount, pageSize, currentPage }: Props) => {
     router.push('?' + params.toString());
   };
   return (
-    <div className='flex items-center gap-3'>
+    <div className='flex items-center gap-3 mt-4'>
       <p>
         page {currentPage} of {pageCount}
       </p>
